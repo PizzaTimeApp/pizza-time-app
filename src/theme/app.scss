@@ -1,0 +1,25 @@
+// Sizes
+// .w-80 {
+//     width: 80%;
+// }
+
+
+// Positioning
+.text-center {
+    text-align: center;
+}
+
+// Marges 
+.p-10 {
+    padding: 10px;
+}
+
+// Errors 
+.errors {
+    font-size: small;
+    color: #fff;
+    background:  var(--ion-color-danger);
+    padding-left: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
