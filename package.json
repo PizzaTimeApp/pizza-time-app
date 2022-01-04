@@ -12,6 +12,7 @@
     "e2e": "ng e2e",
     "android": "ionic cap run android -l --host=\"0.0.0.0\" --target=\"main\"",
     "ios": "ionic cap run ios -l --host=\"0.0.0.0\" --target=\"0686F689-D97D-4AD5-AC85-1028E3F12431\"",
+    "iost": "ionic cap run ios -l --host=\"0.0.0.0\" --target=\"1F913FA9-CF64-446A-8EA8-041121DC077D\"",
     "resources": "capacitor-resources -p android,ios && node resources.js"
   },
   "private": true,
