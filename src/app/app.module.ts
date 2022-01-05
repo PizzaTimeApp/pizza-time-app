@@ -14,16 +14,14 @@ import { AuthInterceptor } from './services/authInterceptor';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, IonicStorageModule.forRoot({name: 'app',
-  driverOrder: ['localstorage']})],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,IonicStorageModule.forRoot({name: 'app',
+  driverOrder: ['localstorage']}),HttpClientModule],
   providers: [
     {
     provide: RouteReuseStrategy, 
     useClass: IonicRouteStrategy, 
     },
-    {
-    provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true
-    }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })

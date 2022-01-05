@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpRequest, HttpHandler, HttpEvent, HttpInterceptor} from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
+import { map, mergeMap } from "rxjs/operators";
 import { Storage } from '@ionic/storage';
 import { AuthenticationService } from './authentication.service';
 
@@ -14,21 +15,21 @@ export class AuthInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
  
-    let token = this.authService.getCurrentToken()
-
-    console.log(token);
-       
-    if (token || token != null ||  token != undefined) {
-      // console.log("fdfd");
-    const clonedReq = req.clone({
-        setHeaders: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer ' +  this.token, 
-        }
+    let promise = this.storage.get('AUTH_TOKEN');
+    
+    
+    return from(promise).pipe(mergeMap(token=>{
+      if (token || token != null ||  token != undefined) {
+        const clonedReq = req.clone({
+          setHeaders: {
+              'Content-Type': 'application/json',
+              Authorization: 'Bearer ' +  token, 
+          }
         });
-      return next.handle(clonedReq);
-    } else {
-      return next.handle(req);
-    }
+        return next.handle(clonedReq);
+      } else {
+        return next.handle(req);
+      }
+    }));
   }
 }
