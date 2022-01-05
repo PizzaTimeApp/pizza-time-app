@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { BehaviorSubject, from, Observable } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
@@ -14,23 +15,34 @@ export class AuthenticationService {
   isAuthenticated: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(null);
   token = '';
 
-  constructor(private storage: Storage, private authApi: AuthUserService) {   
+  constructor(private storage: Storage, private authApi: AuthUserService, private alertController: AlertController) {  
     this.loadToken();
     this.checkToken();
   }
 
-
+  async getCurrentToken() {
+    await this.storage.get('AUTH_TOKEN');  
+  }
 
   async checkToken() {
     const token = await this.storage.get('AUTH_TOKEN');    
     if(token) {
       this.authApi.checkToken().subscribe((data) => {
-        console.log(data);
+        if(data.success === true) {
+          this.isAuthenticated.next(true);  
+        } else {
+          async () => {
+            const alert = this.alertController.create({
+              header: 'Token expiré',
+              buttons: ['OK'],
+            });
+            await this.logout();
+          }
+        }
       })
     } else {
-
+      this.isAuthenticated.next(false);
     }
-  
   }
 
   async loadToken() {
