@@ -1,0 +1,93 @@
+<ion-content>
+  <ion-row>
+    <ion-col class="ion-text-center marginTop">
+      <img src="/assets/icon/favicon.png" alt="logo" width="50"/>
+    </ion-col>
+  </ion-row>
+  <form class="form-ai-center">
+    <div class="input-group">
+
+      <ion-title color="primary">Profile</ion-title>
+
+      <ion-item class="w-80" lines="full">
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="email"  required></ion-input>
+      </ion-item>
+      
+      <ion-item class="w-80" lines="full">
+        <ion-label position="floating">Pseudo</ion-label>
+        <ion-input type="text" fill="clear"  required></ion-input>
+      </ion-item>
+      
+      <ion-item class="w-80" lines="full">
+        <ion-label position="floating">Nom</ion-label>
+        <ion-input type="text" fill="clear"  required></ion-input>
+      </ion-item>
+
+      <ion-item class="w-80" lines="full">
+        <ion-label position="floating">Prenom</ion-label>
+        <ion-input type="text" fill="clear"  required></ion-input>
+      </ion-item>
+
+      <ion-item class="w-80" lines="full">
+        <ion-label position="stacked">Date de naissance</ion-label>
+        <ion-input type="date" fill="clear"  required></ion-input>
+      </ion-item>
+
+      <ion-item class="w-80" lines="full">
+        <ion-label position="floating">Téléphone</ion-label>
+        <ion-input type="tel" fill="clear"  required></ion-input>
+      </ion-item>
+
+      
+    </div>
+    <div class="form-ai-center">
+
+      <ion-title color="primary">Adresse</ion-title>
+
+      <ion-item class="w-80" lines="full">
+        <ion-label position="floating">Adresse</ion-label>
+        <ion-input type="text" fill="clear"  required></ion-input>
+      </ion-item>
+
+      <ion-item class="w-80" lines="full">
+        <ion-label position="floating">Ville</ion-label>
+        <ion-input type="text" fill="clear"  required></ion-input>
+      </ion-item>
+
+      <ion-item class="w-80" lines="full">
+        <ion-label position="floating">Code postal</ion-label>
+        <ion-input type="number" fill="clear"  required></ion-input>
+      </ion-item>
+    </div>
+    <div class="form-ai-center">
+
+      <ion-title color="primary">Mot de passe</ion-title>
+
+      <ion-item class="w-80" lines="full">
+        <ion-label position="floating">Mot de passe</ion-label>
+        <ion-input type="password" fill="clear"  required></ion-input>
+      </ion-item>
+
+      <ion-item class="w-80" lines="full">
+        <ion-label position="floating">Confirmer le mot de passe</ion-label>
+        <ion-input type="password" fill="clear"  required></ion-input>
+      </ion-item>
+    </div>
+    
+
+
+    <ion-row class="w-80">
+      <ion-col class="ion-text-center">
+        <ion-button  class="ion-padding" type="submit" color="danger" expand="block">S'inscrire</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row class="w-80 padding">
+      <ion-col class="ion-text-center">
+       <a [routerLink]="['/login']" class="">Déjà un compte ?</a> 
+      </ion-col>
+    </ion-row>
+    
+  </form>
+  
+</ion-content>
