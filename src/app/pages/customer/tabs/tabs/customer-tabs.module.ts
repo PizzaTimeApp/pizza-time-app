@@ -3,18 +3,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { TabsPageRoutingModule } from './customer-tabs-routing.module';
+import { CustomerTabsPageRoutingModule } from './customer-tabs-routing.module';
 
 import { CustomerTabsPage } from './customer-tabs.page';
 
-import { HeaderComponent } from '../../../../components/header/header.component';
 @NgModule({
   imports: [
   IonicModule,
     CommonModule,
     FormsModule,
-    TabsPageRoutingModule
+    CustomerTabsPageRoutingModule
   ],
-  declarations: [CustomerTabsPage, HeaderComponent]
+  declarations: [CustomerTabsPage]
 })
 export class CustomerTabsPageModule {}
