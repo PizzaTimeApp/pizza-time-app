@@ -6,15 +6,16 @@ import { FormsModule } from '@angular/forms';
 import { BrowsePage } from './browse.page';
 
 import { BrowsePageRoutingModule } from './browse-routing.module';
-import { HeaderComponent } from 'src/app/components/header/header.component';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
-    BrowsePageRoutingModule
+    BrowsePageRoutingModule,
+    ComponentsModule
   ],
-  declarations: [BrowsePage, HeaderComponent]
+  declarations: [BrowsePage]
 })
 export class BrowsePageModule {}

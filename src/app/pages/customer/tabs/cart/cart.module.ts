@@ -5,15 +5,16 @@ import { FormsModule } from '@angular/forms';
 import { CartPage } from './cart.page';
 
 import { CartPageRoutingModule } from './cart-routing.module';
-import { HeaderComponent } from 'src/app/components/header/header.component';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
-    CartPageRoutingModule
+    CartPageRoutingModule,
+    ComponentsModule
   ],
-  declarations: [CartPage, HeaderComponent]
+  declarations: [CartPage]
 })
 export class CartPageModule {}

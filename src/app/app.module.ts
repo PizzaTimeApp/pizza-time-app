@@ -9,11 +9,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './services/authInterceptor';
+import { HeaderComponent } from './components/header/header.component';
+
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent], 
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,IonicStorageModule.forRoot({name: 'app',
-  driverOrder: ['localstorage']}),HttpClientModule],
+driverOrder: ['localstorage']}), HttpClientModule],
   providers: [
     {
     provide: RouteReuseStrategy, 

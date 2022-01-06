@@ -6,15 +6,16 @@ import { FormsModule } from '@angular/forms';
 import { CookPage } from './cook.page';
 
 import { CookPageRoutingModule } from './cook-routing.module';
-import { HeaderComponent } from 'src/app/components/header/header.component';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
-    CookPageRoutingModule
+    CookPageRoutingModule,
+    ComponentsModule
   ],
-  declarations: [CookPage, HeaderComponent]
+  declarations: [CookPage]
 })
 export class CookPageModule {}
