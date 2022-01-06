@@ -14,7 +14,6 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 >>>>>>> e6dae5355b38c04cbfddf6bb5178eb1a8562b842
 import { AuthInterceptor } from './services/authInterceptor';
-
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],

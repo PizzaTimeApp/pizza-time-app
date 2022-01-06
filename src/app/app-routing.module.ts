@@ -21,7 +21,7 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: () => import('./pages/customer/home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./pages/customer/tabs/home/home.module').then( m => m.HomePageModule)
   },
   {
     path: 'register',

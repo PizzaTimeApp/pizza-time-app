@@ -36,7 +36,7 @@ export class AuthenticationService {
           buttons: ['OK'],
         });
 
-        if(data.success !== true) {
+        if(data.success == true) {
           this.isAuthenticated.next(true);  
         } else {
           console.log("data false");

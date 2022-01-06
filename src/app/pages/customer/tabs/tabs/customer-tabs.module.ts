@@ -7,13 +7,14 @@ import { TabsPageRoutingModule } from './customer-tabs-routing.module';
 
 import { CustomerTabsPage } from './customer-tabs.page';
 
+import { HeaderComponent } from '../../../../components/header/header.component';
 @NgModule({
   imports: [
-    IonicModule,
+  IonicModule,
     CommonModule,
     FormsModule,
     TabsPageRoutingModule
   ],
-  declarations: [CustomerTabsPage]
+  declarations: [CustomerTabsPage, HeaderComponent]
 })
 export class CustomerTabsPageModule {}

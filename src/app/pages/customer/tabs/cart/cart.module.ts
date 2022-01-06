@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { CartPage } from './cart.page';
 
 import { CartPageRoutingModule } from './cart-routing.module';
+import { HeaderComponent } from 'src/app/components/header/header.component';
 
 @NgModule({
   imports: [
@@ -13,6 +14,6 @@ import { CartPageRoutingModule } from './cart-routing.module';
     FormsModule,
     CartPageRoutingModule
   ],
-  declarations: [CartPage]
+  declarations: [CartPage, HeaderComponent]
 })
 export class CartPageModule {}

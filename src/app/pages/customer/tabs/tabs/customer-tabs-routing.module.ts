@@ -4,7 +4,7 @@ import { CustomerTabsPage } from './customer-tabs.page';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'user',
     component: CustomerTabsPage,
     children: [
       {
@@ -28,15 +28,19 @@ const routes: Routes = [
         loadChildren: () => import('../account/account.module').then(m => m.AccountPageModule)
       },
       {
+        path: 'settings',
+        loadChildren: () => import('../setting/setting.module').then(m => m.SettingPageModule)
+      },
+      {
         path: '',
-        redirectTo: '/app/home',
+        redirectTo: '/app/user/home',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/tabs/home',
     pathMatch: 'full'
   }
 ];
