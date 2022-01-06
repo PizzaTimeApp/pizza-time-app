@@ -27,7 +27,7 @@
       <ion-row class="w-80">
         <ion-col class="ion-text-center">
           <ion-button  class="ion-padding" type="submit" color="danger" expand="block">Connexion</ion-button>
-          <ion-button  class="ion-padding ion-margin-bottom" type="button" fill="outline" color="danger" expand="block">S'inscrire</ion-button>
+          <ion-button  [routerLink]="['/register']" class="ion-padding ion-margin-bottom" type="button" fill="outline" color="danger" expand="block">S'inscrire</ion-button>
           <a [routerLink]="['/forgot-password']" class="">Mot de passe oublié ?</a>
         </ion-col>
       </ion-row>
