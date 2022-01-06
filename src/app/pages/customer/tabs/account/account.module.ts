@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { AccountPage } from './account.page';
 
 import { AccountPageRoutingModule } from './account-routing.module';
+import { HeaderComponent } from 'src/app/components/header/header.component';
 
 @NgModule({
   imports: [
@@ -13,6 +14,6 @@ import { AccountPageRoutingModule } from './account-routing.module';
     FormsModule,
     AccountPageRoutingModule
   ],
-  declarations: [AccountPage]
+  declarations: [AccountPage, HeaderComponent]
 })
 export class AccountPageModule {}

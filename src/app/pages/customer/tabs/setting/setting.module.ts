@@ -3,18 +3,17 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { CookPage } from './cook.page';
+import { SettingPage } from './setting.page';
 
-import { CookPageRoutingModule } from './cook-routing.module';
-import { HeaderComponent } from 'src/app/components/header/header.component';
+import { SettingPageRoutingModule } from './setting-routing.module';
 
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
-    CookPageRoutingModule
+    SettingPageRoutingModule
   ],
-  declarations: [CookPage, HeaderComponent]
+  declarations: [SettingPage]
 })
-export class CookPageModule {}
+export class SettingPageModule {}

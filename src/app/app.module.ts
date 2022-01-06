@@ -10,7 +10,6 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './services/authInterceptor';
-
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],

@@ -147,8 +147,14 @@
     --ion-color-light-contrast: #ffffff;
     --ion-color-light-contrast-rgb: 255,255,255;
     --ion-color-light-shade: #1e2023;
-    --ion-color-light-tint: #383a3e;
+    --ion-color-light-tint: #979898;
+
+    /* Toolbar additionnal */
+    --ion-toolbar-background: #d3d3d3;
+    --ion-toolbar-border-color: #d3d3d3;
   }
+
+
 
   /*
    * iOS Dark Theme
@@ -191,9 +197,9 @@
   }
 
   .ios ion-modal {
-    --ion-background-color: var(--ion-color-step-100);
-    --ion-toolbar-background: var(--ion-color-step-150);
-    --ion-toolbar-border-color: var(--ion-tab-bar-background);
+    --ion-background-color: #e9e9e9;
+    --ion-toolbar-background: #e9e9e9;
+    --ion-toolbar-border-color: #e9e9e9;
   }
 
 
