@@ -22,4 +22,4 @@ import { environment } from '../../environments/environment';
     checkToken(): Observable<any>{        
       return this.http.get(this.API_URL+this.userUrl+'/profile');
     }
-  }
+}

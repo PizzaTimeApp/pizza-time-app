@@ -17,7 +17,8 @@ export class AuthInterceptor implements HttpInterceptor {
  
     let promise = this.storage.get('AUTH_TOKEN');
     
-    return from(promise).pipe(mergeMap(token=>{
+    
+    return from(promise).pipe(mergeMap(token=>{  
       if (token || token != null ||  token != undefined) {
         const clonedReq = req.clone({
           setHeaders: {

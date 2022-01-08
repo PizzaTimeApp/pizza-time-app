@@ -28,27 +28,60 @@ export class AuthenticationService {
   }
 
   async checkToken() {
-    const token = await this.storage.get('AUTH_TOKEN');    
-    if(token) {
-      this.authApi.checkToken().subscribe(async(data) => {
-        const alert = await this.alertController.create({
-          header: 'Token expiré',
-          buttons: ['OK'],
-        });
+    const token = await this.storage.get('AUTH_TOKEN');   
+    
+    const alert = await this.alertController.create({
+      header: 'Token expiré',
+      buttons: ['OK'],
+    });
 
-        if(data.success == true) {
+    if(token || token != null || token != undefined){
+      await this.authApi.checkToken().subscribe(res => {        
+        if(res.success !== false) {
           this.isAuthenticated.next(true);  
+          // console.log(res);
+          
         } else {
           console.log("data false");
-            await alert.present();
-            await alert.onDidDismiss();
-            await this.logout();
+          alert.present();
+          alert.onDidDismiss();
+          this.logout();
         }
       })
-    } else {
-      this.isAuthenticated.next(false);
     }
+    else {
+      this.isAuthenticated.next(false);
+    } 
   }
+    // catch(e) {
+    //     console.log(e);
+    //     const alert = await this.alertController.create({
+    //       header: 'Token expiré',
+    //       buttons: ['OK'],
+    //     });
+    //     await alert.present();
+    //     await alert.onDidDismiss();
+    //     await this.logout();
+    //   }
+    // }
+    // if(token || token != null || token != undefined) {
+    //   let data = this.authApi.checkToken();
+    //   console.log(data);
+      
+        // if(data.success !== false) {
+        //   this.isAuthenticated.next(true);  
+        // } else {
+        //   console.log("data false");
+        //     await alert.present();
+        //     await alert.onDidDismiss();
+        //     await this.logout();
+        // }
+    // }
+    //   })
+    // } else {
+    //   this.isAuthenticated.next(false);
+    // }
+  // }
 
   async loadToken() {
     const token = await this.storage.get('AUTH_TOKEN');    

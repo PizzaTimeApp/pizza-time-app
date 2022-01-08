@@ -9,7 +9,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './services/authInterceptor';
-import { HeaderComponent } from './components/header/header.component';
 import { ComponentsModule } from './components/components.module';
 
 @NgModule({
