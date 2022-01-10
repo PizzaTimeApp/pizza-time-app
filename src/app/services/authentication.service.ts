@@ -5,6 +5,7 @@ import { AlertController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { BehaviorSubject } from 'rxjs';
 import { AuthUserService } from 'src/api/auth/auth-user.service';
+import { AlertComponent } from '../components/alerts/alert/alert.component';
 
 const AUTH_TOKEN = '';
 
@@ -19,7 +20,8 @@ export class AuthenticationService {
     private storage: Storage,
     private router:Router, 
     private authApi: AuthUserService, 
-    private alertController: AlertController) {  
+    private alertController: AlertController,
+    private alert: AlertComponent) {  
     this.loadToken();
     this.checkToken();
   }
@@ -33,28 +35,24 @@ export class AuthenticationService {
   async checkToken() {
     const token = await this.storage.get('AUTH_TOKEN');   
     
-    const alert = await this.alertController.create({
-      header: 'Token expiré',
-      buttons: ['OK'],
-    });
+
 
     if(token || token != null || token != undefined){
-      await this.authApi.checkToken().subscribe(res => {        
-        if(res.success !== false) {
+      await this.authApi.checkToken().subscribe(
+        async (res) => { 
+          console.log(res);
           this.isAuthenticated.next(true);  
-          // console.log(res);
-          
-        } else {
-          console.log("data false");
-          alert.present();
-          alert.onDidDismiss();
+          console.log("connected");
+        },
+        async (err) => {
+          console.log(err);
+          await this.alert.presentAlert('Token epxiré', null, ['Ok'], true);    
           this.logout();
-        }
-      })
+
+        } 
+      )
     }
-    else {
-      this.isAuthenticated.next(false);
-    } 
+
   }
 
   async loadToken() {

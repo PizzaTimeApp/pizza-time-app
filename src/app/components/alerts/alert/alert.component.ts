@@ -10,18 +10,18 @@ export class AlertComponent{
 
   constructor(
     private alertController: AlertController,
-    private loadingController: LoadingController,
   ) { }
 
-  async presentAlert(header = 'Échec', message, buttons = ['Ok']) {
+  async presentAlert(header = 'Échec', message, buttons = ['Ok'], waiting = false) {
     const alert = await this.alertController.create({
       header: header,
       message: message,
       buttons: buttons,
     });
 
-    await alert.present();
+    alert.present();
+    if(waiting == true) { 
+      return alert.onDidDismiss();
+    } 
   }
-  
-
 }
