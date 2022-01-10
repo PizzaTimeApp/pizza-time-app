@@ -1,10 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController, LoadingController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
-import { BehaviorSubject, from, Observable } from 'rxjs';
-import { map, switchMap, tap } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
 import { AuthUserService } from 'src/api/auth/auth-user.service';
 
 const AUTH_TOKEN = '';
@@ -16,7 +15,11 @@ export class AuthenticationService {
   isAuthenticated: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(null);
   token = '';
 
-  constructor(private storage: Storage,private router:Router, private authApi: AuthUserService, private alertController: AlertController) {  
+  constructor(
+    private storage: Storage,
+    private router:Router, 
+    private authApi: AuthUserService, 
+    private alertController: AlertController) {  
     this.loadToken();
     this.checkToken();
   }
@@ -53,35 +56,6 @@ export class AuthenticationService {
       this.isAuthenticated.next(false);
     } 
   }
-    // catch(e) {
-    //     console.log(e);
-    //     const alert = await this.alertController.create({
-    //       header: 'Token expiré',
-    //       buttons: ['OK'],
-    //     });
-    //     await alert.present();
-    //     await alert.onDidDismiss();
-    //     await this.logout();
-    //   }
-    // }
-    // if(token || token != null || token != undefined) {
-    //   let data = this.authApi.checkToken();
-    //   console.log(data);
-      
-        // if(data.success !== false) {
-        //   this.isAuthenticated.next(true);  
-        // } else {
-        //   console.log("data false");
-        //     await alert.present();
-        //     await alert.onDidDismiss();
-        //     await this.logout();
-        // }
-    // }
-    //   })
-    // } else {
-    //   this.isAuthenticated.next(false);
-    // }
-  // }
 
   async loadToken() {
     const token = await this.storage.get('AUTH_TOKEN');    
@@ -94,22 +68,15 @@ export class AuthenticationService {
     }
   }
 
-  login(credentials: {email, password}): Observable<any>{     
-    return this.authApi.login(credentials).pipe(
-      map((data:any) => data.body.token),
-      switchMap(token => {
-        return from(this.storage.set('AUTH_TOKEN', token));
-      }),
-      tap(_=> {
-        this.isAuthenticated.next(true);
-      })
-    );
+  login(token){     
+    if(token) {
+      this.storage.set('AUTH_TOKEN', token);
+      this.isAuthenticated.next(true);
+    } else {
+      this.isAuthenticated.next(false);
+    }
   }
-
-  register() {
-
-  }
-
+  
   logout(): Promise<void> {
     this.isAuthenticated.next(false);
     this.router.navigateByUrl('/', { replaceUrl: true});

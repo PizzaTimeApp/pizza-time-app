@@ -1,0 +1,29 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
+import { Pizza } from 'src/app/models/pizza';
+import { GetParamsService } from '../../get-params.service';
+
+
+@Injectable({
+    providedIn: 'root'
+  })
+  export class CustomerApiPizzaService {
+
+    private API_URL= environment.API_URL;
+    private userUrl = 'api/pizza'; 
+    
+    constructor(
+      private http: HttpClient,
+      private httpParams: GetParamsService,
+    ) { }
+
+
+    getPizzas(limit = null, offset = null, order = null, type = "admin"): Observable<any>{ 
+      let params = this.httpParams.httpParamsFactory({"limit": limit, "offset": offset, "order": order, "type": type});
+      
+      return this.http.get(this.API_URL+this.userUrl+'/getPizzas', {params: params});
+    }
+  
+}

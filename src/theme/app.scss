@@ -1,14 +1,51 @@
+// Margins / Padding 
+ion-content {
+    --padding-top: 1%;
+    --padding-bottom: 1%;
+    --padding-start: 2%;
+    --padding-end: 2%;
+}
+
+.margin-0 {
+    margin: 0;
+}
+
 // Sizes
-// .w-80 {
-//     width: 80%;
-// }
+.w-100 {
+    width: 100%;
+}
+.h-100 {
+    height: 100%;
+}
 
 
 // Positioning
+.text-center {
+    text-align: center;
+    display: block; 
+}
 
-// .text-center {
-//     text-align: center;
-// }
+.jc-center {
+    display: flex;
+    justify-content: center;
+}
+
+.jc-between {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ai-center  {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.margin-auto {
+    margin: auto;
+}
+
 
 // Marges 
 .p-10 {

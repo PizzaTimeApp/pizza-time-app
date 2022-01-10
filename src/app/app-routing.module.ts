@@ -23,6 +23,14 @@ const routes: Routes = [
     path: 'register',
     loadChildren: () => import('./pages/auth/register/register.module').then( m => m.RegisterPageModule)
   },
+  {
+    path: 'reset-password/:token',
+    loadChildren: () => import('./pages/auth/reset-password/reset-password.module').then( m => m.ResetPasswordPageModule)
+  },
+  {
+    path: 'request-email-password',
+    loadChildren: () => import('./pages/auth/request-email-password/request-email-password.module').then( m => m.RequestEmailPasswordPageModule)
+  },
 
 ];
 @NgModule({

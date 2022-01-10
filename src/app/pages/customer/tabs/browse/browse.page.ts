@@ -9,4 +9,6 @@ export class BrowsePage {
 
   constructor() {}
 
+  ngOnInit() {}
+
 }

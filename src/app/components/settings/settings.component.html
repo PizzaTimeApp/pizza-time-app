@@ -1,18 +1,24 @@
-<ion-button slot="end" fill="clear" href="/app/user/settings" >
-  <ion-icon name="settings-outline" color="secondary"></ion-icon>
-</ion-button>
-<ion-menu side="start"  menuId="settings" content-id="main-content">
-  <ion-content id="main">
-    <ion-list>
-      <ion-item>Menu Item</ion-item>
-      <ion-item>Menu Item</ion-item>
-      <ion-item>Menu Item</ion-item>
-      <ion-item>Menu Item</ion-item>
-      <ion-item>Menu Item</ion-item>
-    </ion-list>
-  </ion-content>
+<ion-menu contentId="main-content" side="end">
+  <ion-content scroll-y="false">
+      <ion-item lines="full">
+        <ion-icon slot="start" name="moon"></ion-icon>
+        <ion-label>
+          Mode Sombre
+        </ion-label>
+        <ion-toggle id="themeToggle" slot="end"></ion-toggle>
+      </ion-item> 
+      <ion-col class="text-center">
+        <ion-text color="secondary">
+          <h1>PizzaTime</h1>
+          <p>Thomas DUBUIS</p>
+          <p>Quentin MENDEL</p>
+          <small>v1.0</small>
+        </ion-text>  
+      </ion-col> 
+    </ion-content>
   <ion-footer>
     <ion-button expand="block" class="ion-margin" (click)="logout()">Se déconnecter</ion-button>
   </ion-footer>
 </ion-menu>
-<ion-router-outlet id="main-content"></ion-router-outlet>
+
+<ion-router-outlet id="main-content" main></ion-router-outlet>

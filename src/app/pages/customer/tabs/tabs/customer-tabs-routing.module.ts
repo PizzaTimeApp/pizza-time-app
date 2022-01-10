@@ -28,10 +28,6 @@ const routes: Routes = [
         loadChildren: () => import('../account/account.module').then(m => m.AccountPageModule)
       },
       {
-        path: 'settings',
-        loadChildren: () => import('../setting/setting.module').then(m => m.SettingPageModule)
-      },
-      {
         path: '',
         redirectTo: '/app/user/home',
         pathMatch: 'full'

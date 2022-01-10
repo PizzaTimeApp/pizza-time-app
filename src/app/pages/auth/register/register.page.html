@@ -1,90 +1,132 @@
-<ion-content>
+<ion-content class="form-content">
   <ion-row>
-    <ion-col class="ion-text-center marginTop">
+    <ion-col class="ion-text-center">
       <img src="/assets/icon/favicon.png" alt="logo" width="50"/>
     </ion-col>
   </ion-row>
-  <form class="form-ai-center">
+  <form class="form-ai-center" (ngSubmit)="register()" [formGroup]="user">
     <div class="input-group">
+      <ion-text class="form-title" color="primary">Profile</ion-text>
 
-      <ion-title style="display: block; position:relative;" color="primary">Profile</ion-title>
-
-      <ion-item class="w-80" lines="full">
+      <ion-item class="" lines="full">
         <ion-label position="floating">Email</ion-label>
-        <ion-input type="email"  required></ion-input>
+        <ion-input type="email" formControlName="email" required></ion-input>
       </ion-item>
+      <div *ngIf="(email.dirty || email.touched) && email.errors" class="errors">
+        <span *ngIf="email.errors?.required">Email requise</span>
+        <span *ngIf="email.errors?.email">Email invalide</span>
+      </div>
       
-      <ion-item class="w-80" lines="full">
-        <ion-label position="floating">Pseudo</ion-label>
-        <ion-input type="text" fill="clear"  required></ion-input>
+      <ion-item class="" lines="full">
+        <ion-label position="floating">Nom d'utilisateur</ion-label>
+        <ion-input type="text" fill="clear" formControlName="username" required></ion-input>
       </ion-item>
+      <div *ngIf="(username.dirty || username.touched) && username.errors" class="errors">
+        <span *ngIf="username.errors?.required">Nom d'utilisateur requis</span>
+      </div>
       
-      <ion-item class="w-80" lines="full">
+      <ion-item class="" lines="full">
         <ion-label position="floating">Nom</ion-label>
-        <ion-input type="text" fill="clear"  required></ion-input>
+        <ion-input type="text" fill="clear" formControlName="lastname" required></ion-input>
       </ion-item>
+      <div *ngIf="(lastname.dirty || lastname.touched) && lastname.errors" class="errors">
+        <span *ngIf="lastname.errors?.required">Nom requis</span>
+      </div>
 
-      <ion-item class="w-80" lines="full">
+      <ion-item class="" lines="full">
         <ion-label position="floating">Prenom</ion-label>
-        <ion-input type="text" fill="clear"  required></ion-input>
+        <ion-input type="text" fill="clear" formControlName="firstname" required></ion-input>
       </ion-item>
+      <div *ngIf="(firstname.dirty || firstname.touched) && firstname.errors" class="errors">
+        <span *ngIf="firstname.errors?.required">Prénom requise</span>
+      </div>
 
-      <ion-item class="w-80" lines="full">
+      <ion-item class="" lines="full">
         <ion-label position="stacked">Date de naissance</ion-label>
-        <ion-input type="date" fill="clear"  required></ion-input>
+        <ion-input type="date" fill="clear" formControlName="dateOfBirth" required></ion-input>
       </ion-item>
+      <div *ngIf="(dateOfBirth.dirty || dateOfBirth.touched) && dateOfBirth.errors" class="errors">
+        <span *ngIf="dateOfBirth.errors?.required">Date de naissance requise</span>
+      </div>
 
-      <ion-item class="w-80" lines="full">
+      <ion-item class="" lines="full">
         <ion-label position="floating">Téléphone</ion-label>
-        <ion-input type="tel" fill="clear"  required></ion-input>
+        <ion-input type="tel" fill="clear" formControlName="phone" required></ion-input>
       </ion-item>
+      <div *ngIf="(phone.dirty || phone.touched) && phone.errors" class="errors">
+        <span *ngIf="phone.errors?.required">Téléphone requis</span>
+      </div>
 
-      
+      <ion-item class="" lines="full">
+        <ion-label position="floating" >Genre</ion-label>
+        <ion-select interface="popover" formControlName="gender" required>
+          <ion-select-option value="male">Homme</ion-select-option>
+          <ion-select-option value="female">Femme</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <div *ngIf="(gender.dirty || gender.touched) && gender.errors" class="errors">
+        <span *ngIf="gender.errors?.required">Genre requis</span>
+      </div>
     </div>
-    <div class="form-ai-center">
 
-      <ion-title style="display: block; position:relative;" color="primary">Adresse</ion-title>
+    <div class="input-group">
+      <ion-text class="form-title" color="primary">Adresse</ion-text>
 
-      <ion-item class="w-80" lines="full">
+      <ion-item class="" lines="full">
         <ion-label position="floating">Adresse</ion-label>
-        <ion-input type="text" fill="clear"  required></ion-input>
+        <ion-input type="text" fill="clear" formControlName="address" required></ion-input>
       </ion-item>
-
-      <ion-item class="w-80" lines="full">
+      <div *ngIf="(address.dirty || address.touched) && address.errors" class="errors">
+        <span *ngIf="address.errors?.required">Adresse requise</span>
+      </div>
+     
+      <ion-item class="" lines="full">
         <ion-label position="floating">Ville</ion-label>
-        <ion-input type="text" fill="clear"  required></ion-input>
+        <ion-input type="text" fill="clear" formControlName="city" required></ion-input>
       </ion-item>
-
-      <ion-item class="w-80" lines="full">
+      <div *ngIf="(city.dirty || city.touched) && city.errors" class="errors">
+        <span *ngIf="city.errors?.required">Ville requise</span>
+      </div>
+     
+      <ion-item class="" lines="full">
         <ion-label position="floating">Code postal</ion-label>
-        <ion-input type="number" fill="clear"  required></ion-input>
+        <ion-input type="number" fill="clear" formControlName="zip" required></ion-input>
       </ion-item>
+      <div *ngIf="(zip.dirty || zip.touched) && zip.errors" class="errors">
+        <span *ngIf="zip.errors?.required">Code postal requis</span>
+      </div>
     </div>
-    <div class="form-ai-center">
 
-      <ion-title style="display: block; position:relative;" color="primary">Mot de passe</ion-title>
+    <div class="input-group">
+      <ion-text class="form-title" color="primary">Mot de passe</ion-text>
 
-      <ion-item class="w-80" lines="full">
+      <ion-item class="" lines="full">
         <ion-label position="floating">Mot de passe</ion-label>
-        <ion-input type="password" fill="clear"  required></ion-input>
+        <ion-input type="password" fill="clear" formControlName="password" required></ion-input>
       </ion-item>
+      <div *ngIf="(password.dirty || password.touched) && password.errors" class="errors">
+        <span *ngIf="password.errors?.required">Mot de passe requis</span>
+      </div>
 
-      <ion-item class="w-80" lines="full">
+      <ion-item class="" lines="full">
         <ion-label position="floating">Confirmer le mot de passe</ion-label>
-        <ion-input type="password" fill="clear"  required></ion-input>
+        <ion-input type="password" fill="clear" formControlName="confirmPassword" required></ion-input>
       </ion-item>
+      <div *ngIf="(confirmPassword.dirty || confirmPassword.touched) && confirmPassword.errors" class="errors">
+        <span *ngIf="confirmPassword.errors?.required">Mot de passe requis</span>
+      </div>
     </div>
     
 
 
-    <ion-row class="w-80">
+    <ion-row class="">
       <ion-col class="ion-text-center">
         <ion-button  class="ion-padding" type="submit" color="danger" expand="block">S'inscrire</ion-button>
       </ion-col>
     </ion-row>
-    <ion-row class="w-80 padding">
+    <ion-row class="ion-padding">
       <ion-col class="ion-text-center">
-       <a [routerLink]="['/login']" class="">Déjà un compte ?</a> 
+       <a [routerLink]="['/login']">Déjà un compte ?</a> 
       </ion-col>
     </ion-row>
     
