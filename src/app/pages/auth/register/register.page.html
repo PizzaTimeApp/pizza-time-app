@@ -7,7 +7,7 @@
   <form class="form-ai-center" (ngSubmit)="register()" [formGroup]="user">
     <div class="input-group">
       <ion-text class="form-title" color="primary">Profile</ion-text>
-
+      
       <ion-item class="" lines="full">
         <ion-label position="floating">Email</ion-label>
         <ion-input type="email" formControlName="email" required></ion-input>
@@ -117,8 +117,6 @@
       </div>
     </div>
     
-
-
     <ion-row class="">
       <ion-col class="ion-text-center">
         <ion-button  class="ion-padding" type="submit" color="danger" expand="block">S'inscrire</ion-button>
@@ -129,7 +127,5 @@
        <a [routerLink]="['/login']">Déjà un compte ?</a> 
       </ion-col>
     </ion-row>
-    
   </form>
-  
 </ion-content>
