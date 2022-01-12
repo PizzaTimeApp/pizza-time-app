@@ -40,7 +40,6 @@ export class AuthenticationService {
     if(token || token != null || token != undefined){
       await this.authApi.checkToken().subscribe(
         async (res) => { 
-          console.log(res);
           this.isAuthenticated.next(true);  
           console.log("connected");
         },

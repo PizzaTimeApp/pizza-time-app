@@ -20,7 +20,7 @@ import { GetParamsService } from '../../get-params.service';
     ) { }
 
 
-    getPizzas(limit = null, offset = null, order = null, type = "admin"): Observable<any>{ 
+    getPizzas(type = "admin", limit = null, offset = null, order = null): Observable<any>{ 
       let params = this.httpParams.httpParamsFactory({"limit": limit, "offset": offset, "order": order, "type": type});
       
       return this.http.get(this.API_URL+this.userUrl+'/getPizzas', {params: params});
