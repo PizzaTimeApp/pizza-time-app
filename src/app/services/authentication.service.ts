@@ -42,7 +42,7 @@ export class AuthenticationService {
           this.isAuthenticated.next(true);  
         },
         async (err) => {
-          console.log(err);
+          // console.log(err);
           await this.alert.presentAlert('Token epxiré', null, ['Ok'], true);    
           this.logout();
 
