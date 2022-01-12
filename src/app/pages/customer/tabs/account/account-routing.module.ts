@@ -6,7 +6,19 @@ const routes: Routes = [
   {
     path: '',
     component: AccountPage,
-  }
+  },
+  {
+    path: 'informations',
+    loadChildren: () => import('./informations/informations.module').then( m => m.InformationsPageModule)
+  },
+  {
+    path: 'password',
+    loadChildren: () => import('./password/password.module').then( m => m.PasswordPageModule)
+  },
+  {
+    path: 'orders',
+    loadChildren: () => import('./orders/orders.module').then( m => m.OrdersPageModule)
+  },
 ];
 
 @NgModule({

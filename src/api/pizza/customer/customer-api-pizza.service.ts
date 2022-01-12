@@ -12,18 +12,18 @@ import { GetParamsService } from '../../get-params.service';
   export class CustomerApiPizzaService {
 
     private API_URL= environment.API_URL;
-    private userUrl = 'api/pizza'; 
-    
+    private pizzaUrl = 'api/pizza'; 
+  
     constructor(
       private http: HttpClient,
       private httpParams: GetParamsService,
     ) { }
 
 
-    getPizzas(limit = null, offset = null, order = null, type = "admin"): Observable<any>{ 
+    getPizzas(type = "admin", limit = null, offset = null, order = null): Observable<any>{ 
       let params = this.httpParams.httpParamsFactory({"limit": limit, "offset": offset, "order": order, "type": type});
       
-      return this.http.get(this.API_URL+this.userUrl+'/getPizzas', {params: params});
+      return this.http.get(this.API_URL+this.pizzaUrl+'/getPizzas', {params: params});
     }
   
 }

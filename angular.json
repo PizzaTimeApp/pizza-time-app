@@ -31,7 +31,7 @@
                 "output": "./svg"
               }
             ],
-            "styles": ["src/theme/partials/loading.scss", "src/theme/partials/fonts.scss", "src/theme/partials/forms.scss", "src/theme/app.scss", "src/theme/variables.scss", "src/global.scss"],
+            "styles": ["src/theme/partials/refresher.scss", "src/theme/partials/loading.scss", "src/theme/partials/fonts.scss", "src/theme/partials/forms.scss", "src/theme/app.scss", "src/theme/variables.scss", "src/global.scss"],
             "scripts": [],
             "aot": false,
             "vendorChunk": true,

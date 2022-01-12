@@ -75,7 +75,7 @@ export class RegisterPage implements OnInit {
     return this.user.get('lastname');
   }
   get firstname() {
-    return this.user.get('password');
+    return this.user.get('firstname');
   }  
   get dateOfBirth() {
     return this.user.get('dateOfBirth');

@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Commandes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div>
+    <ion-item>
+      <ion-label>Trier par</ion-label>
+      <ion-select [(ngModel)]="dataFilter" (ionChange)='getMyOrders()' okText="Ok" cancelText="Annuler">
+        <ion-select-option value="createdAt:Asc">Date:Asc</ion-select-option>
+        <ion-select-option value="createdAt:Desc">Date:Desc</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-list>
+      <ion-item routerLink="order/{{order.id}}" routerDirection="forward" *ngFor='let order of orders'>
+        <ion-avatar slot="start">
+          <ion-icon class="h-100 w-100" name="bag-remove-outline"></ion-icon>
+        </ion-avatar>
+        <ion-label class="">
+          <div class="d-flex jc-between">
+            <h2>Commande n°{{order.id}}</h2>
+            <h3>status: {{order.status}}</h3>
+            <h2>{{order.totalAmount}}€</h2>
+          </div>
+          <small>Date du {{order.createdAt | date: 'dd-MM-yyyy H:m'}}</small>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+</ion-content>

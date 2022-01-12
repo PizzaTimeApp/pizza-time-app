@@ -60,9 +60,10 @@ export class ResetPasswordPage implements OnInit {
             
     this.authApi.resetPassword(this.userPassword.value, this.token).subscribe(
       async (res) => {
+        // console.log(res);
         await loading.onDidDismiss();
         await this.toast.presentToast("Mot de passe modifié avec succès", 3000);
-        // this.router.navigateByUrl('/login', { replaceUrl: true});
+        this.router.navigateByUrl('/login', { replaceUrl: true});
       },
       async (err) => {
         // console.log(err);

@@ -14,16 +14,19 @@ import { AuthInterceptor } from './services/authInterceptor';
 import { ToastComponent } from './components/alerts/toast/toast.component';
 import { AlertComponent } from './components/alerts/alert/alert.component';
 import { LoadingComponent } from './components/alerts/loading/loading.component';
+import { RefresherComponent } from './components/refresher/refresher.component';
 
+import { ComponentsModule } from 'src/app/components/components.module';
 @NgModule({
   declarations: [AppComponent], 
   entryComponents: [],
-  imports:  [BrowserModule, RouterModule.forRoot([], { enableTracing: false }), IonicModule.forRoot(), AppRoutingModule,IonicStorageModule.forRoot({name: 'app',
+  imports:  [ComponentsModule, BrowserModule, RouterModule.forRoot([], { enableTracing: false }), IonicModule.forRoot(), AppRoutingModule,IonicStorageModule.forRoot({name: 'app',
 driverOrder: ['localstorage']}), HttpClientModule],
   providers: [
     ToastComponent,
     AlertComponent,
     LoadingComponent,
+    RefresherComponent,
     {
     provide: RouteReuseStrategy, 
     useClass: IonicRouteStrategy, 

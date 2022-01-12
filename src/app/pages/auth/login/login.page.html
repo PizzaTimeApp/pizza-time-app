@@ -8,7 +8,7 @@
             </ion-col>
           </ion-row>
           <div class="input-group">
-            <ion-item class="w-80" lines="full">
+            <ion-item lines="full">
               <ion-label position="floating">Email</ion-label>
               <ion-input type="email" formControlName="email" required></ion-input>
             </ion-item>
@@ -17,7 +17,7 @@
               <span *ngIf="email.errors?.email">Email invalide</span>
             </div>
 
-            <ion-item class="w-80" lines="full">
+            <ion-item lines="full">
               <ion-label position="floating">Mot de passe</ion-label>
               <ion-input type="password" fill="clear" formControlName="password" required></ion-input>
             </ion-item>
@@ -26,7 +26,7 @@
             </div>
           </div>
 
-          <ion-row class="w-80">
+          <ion-row class="w-80 margin-auto">
             <ion-col class="ion-text-center">
               <ion-button  class="ion-padding" type="submit" color="danger" expand="block">Connexion</ion-button>
               <ion-button  [routerLink]="['/register']" class="ion-padding" type="button" fill="outline" color="danger" expand="block">S'inscrire</ion-button>

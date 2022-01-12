@@ -31,7 +31,6 @@ const routes: Routes = [
     path: 'request-email-password',
     loadChildren: () => import('./pages/auth/request-email-password/request-email-password.module').then( m => m.RequestEmailPasswordPageModule)
   },
-
 ];
 @NgModule({
   imports: [

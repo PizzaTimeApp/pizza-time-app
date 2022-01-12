@@ -28,6 +28,10 @@ const routes: Routes = [
         loadChildren: () => import('../account/account.module').then(m => m.AccountPageModule)
       },
       {
+        path: 'pizza:id',
+        loadChildren: () => import('../../../pizzas/show-pizza/show-pizza.module').then(m => m.ShowPizzaPageModule)
+      },
+      {
         path: '',
         redirectTo: '/app/user/home',
         pathMatch: 'full'

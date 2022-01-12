@@ -34,15 +34,12 @@ export class AuthenticationService {
 
   async checkToken() {
     const token = await this.storage.get('AUTH_TOKEN');   
-    
-
 
     if(token || token != null || token != undefined){
       await this.authApi.checkToken().subscribe(
         async (res) => { 
-          console.log(res);
+          // console.log(res);
           this.isAuthenticated.next(true);  
-          console.log("connected");
         },
         async (err) => {
           console.log(err);
@@ -58,7 +55,7 @@ export class AuthenticationService {
   async loadToken() {
     const token = await this.storage.get('AUTH_TOKEN');    
     if(token) {
-      console.log('set token: ', token);
+      // console.log('set token: ', token);
       this.token = token.value;
       this.isAuthenticated.next(true);      
     } else {
