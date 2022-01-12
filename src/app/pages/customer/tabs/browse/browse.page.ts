@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CustomerApiIngredientService } from 'src/api/pizza/customer/customer-api-ingredient.service';
+import { CustomerApiIngredientService } from 'src/api/ingredient/customer/customer-api-ingredient.service';
 import { CustomerApiPizzaService } from 'src/api/pizza/customer/customer-api-pizza.service';
 @Component({
   selector: 'app-browse',
@@ -30,6 +30,7 @@ export class BrowsePage {
         return ingredientCheck;
       });
     });
+  
   }
 
   searchChanged(ev:any) {
@@ -70,5 +71,8 @@ export class BrowsePage {
     this.showPizzas = this.Pizzas
     .filter(pizza => pizza.name.toLowerCase().indexOf(query.toLowerCase()) > -1);
   }
+  
+
+
   
 }
