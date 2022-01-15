@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MyPage } from '../../../../www/vendor';
 
 @Component({
   selector: 'app-refresher',

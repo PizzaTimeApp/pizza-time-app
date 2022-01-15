@@ -26,7 +26,7 @@
     <ion-item-sliding *ngFor="let pizza of showPizzas">
       <ion-item detail>
         <ion-thumbnail slot="start" class="ion-margin-end">
-          <ion-img src={{imageURL}}></ion-img>
+          <ion-img src={{getImagePizza(pizza.image)}}></ion-img>
         </ion-thumbnail>
         <ion-label class="ion-text-wrap"> <h2>{{pizza.name}}</h2> <h4>{{pizza.content}}</h4></ion-label>
         <ion-label slot="end">{{pizza.price}} €</ion-label>

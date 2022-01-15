@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { Pizza } from 'src/app/models/pizza';
+import { CreatePizza } from 'src/app/models/pizza';
 import { GetParamsService } from '../../get-params.service';
 
 
@@ -19,7 +19,14 @@ import { GetParamsService } from '../../get-params.service';
       private httpParams: GetParamsService,
     ) { }
 
+    createPizza(pizza:any): Observable<any>{
+      return this.http.post(this.API_URL+this.pizzaUrl+'/createPizza', pizza);
+    }
 
+    getImagePizza(image:any) {
+      return this.API_URL+this.pizzaUrl+'/getImagePizza/'+image;
+    }
+    
     getPizzas(type = "admin", limit = null, offset = null, order = null): Observable<any>{ 
       let params = this.httpParams.httpParamsFactory({"limit": limit, "offset": offset, "order": order, "type": type});
       

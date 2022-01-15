@@ -61,6 +61,7 @@ export class BrowsePage {
   segmentChanged(ev: any) {
     this.customerApiPizza.getPizzas(ev.detail.value).subscribe((data)=>{
       this.Pizzas = data.body.pizzas;
+      console.log(this.Pizzas);
       this.getFilteredPizza();
     });
   }
@@ -72,7 +73,9 @@ export class BrowsePage {
     .filter(pizza => pizza.name.toLowerCase().indexOf(query.toLowerCase()) > -1);
   }
   
-
+  getImagePizza(image:any) {
+    return this.customerApiPizza.getImagePizza(image);
+  }
 
   
 }
