@@ -8,35 +8,42 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div>
-    <h1 class="title">Commande n°{{myOrder.id}}<br><small>datant du {{myOrder.createdAt | date: 'dd-MM-yyyy H:m'}}</small></h1>
-    <ion-list>
-      <ion-item *ngFor='let orderReservation of myOrder.orderReservations'>
-        <ion-avatar slot="start">
-          <img class="img-items" src="{{orderReservation.pizza.image}}" alt="pizza image" />
-        </ion-avatar>
-        <ion-label class="">
-          <div class="d-flex jc-between">
-            <h2>{{orderReservation.pizza.name}}</h2>
-            <h3>Quantité: {{orderReservation.quantity}}</h3>
-            <h2>{{orderReservation.pizza.price}}€</h2>
+  <ion-row class="ai-center h-100">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Commande n°{{myOrder.id}}</ion-card-title>
+        <ion-card-subtitle>datant du {{myOrder.createdAt | date: 'dd-MM-yyyy HH:mm'}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item *ngFor='let orderReservation of myOrder.orderReservations'>
+            <ion-avatar slot="start">
+              <img class="img-items" src="{{orderReservation.pizza.image}}" alt="pizza image" />
+            </ion-avatar>
+            <ion-label class="">
+              <div class="d-flex jc-between">
+                <h2>{{orderReservation.pizza.name}}</h2>
+                <h3>Quantité: {{orderReservation.quantity}}</h3>
+                <h2>{{orderReservation.pizza.price}}€ /u.</h2>
+              </div>
+            </ion-label>
+          </ion-item>
+          <div class="d-flex jc-between vertical-center">
+            <div>
+              <ion-text>Status : {{myOrder.status}}</ion-text>
+            </div>
+            <div class="">
+              <ion-row class="ion-padding">
+                <ion-text>TVA: 20%</ion-text>
+              </ion-row>
+              <ion-row class="ion-padding">
+                <ion-text>TTC: {{myOrder.totalAmount}}€</ion-text>
+              </ion-row>
+            </div>
           </div>
-        </ion-label>
-      </ion-item>
-      <div class="d-flex jc-between vertical-center">
-        <div>
-          <ion-text>Status : {{myOrder.status}}</ion-text>
-        </div>
-        <div class="">
-          <ion-row class="ion-padding">
-            <ion-text>TVA: 20%</ion-text>
-          </ion-row>
-          <ion-row class="ion-padding">
-            <ion-text>TTC: {{myOrder.totalAmount}}€</ion-text>
-          </ion-row>
-        </div>
-      </div>
-    </ion-list>
-  </div>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </ion-row>
 
 </ion-content>

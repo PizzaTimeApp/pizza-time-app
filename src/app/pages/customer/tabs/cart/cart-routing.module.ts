@@ -6,6 +6,10 @@ const routes: Routes = [
   {
     path: '',
     component: CartPage,
+  },
+  {
+    path: 'cart-modal',
+    loadChildren: () => import('./cart-modal/cart-modal.module').then( m => m.CartModalPageModule)
   }
 ];
 

@@ -6,14 +6,14 @@
   </ion-refresher>
   <div class="new-pizza">
     <h1 class="title">Nouveautés</h1>
-      <app-card-img *ngFor='let pizza of newPizza' class="w-100" [pizza]="pizza" class="w-80"></app-card-img>
+      <app-card-img  class="w-100" routerLink="pizza/{{newPizza.id}}" routerDirection="forward" [pizza]="newPizza" class="w-80"></app-card-img>
   </div>
 
   <div class="moment-pizzas">
     <div>
       <h1 class="title">En ce moment</h1>
       <ion-slides [options]="slideOpt">
-          <ion-slide *ngFor='let pizza of momentPizzas' class="w-100">
+          <ion-slide routerLink="pizza/{{pizza.id}}" routerDirection="forward" *ngFor='let pizza of momentPizzas' class="w-100">
               <div class="arrows prev"></div>
               <app-card [pizza]="pizza" class="w-80"></app-card>
               <div class="arrows next"></div>
@@ -21,4 +21,5 @@
       </ion-slides>
     </div>
   </div>
+
 </ion-content>

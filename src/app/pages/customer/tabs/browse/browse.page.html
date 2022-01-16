@@ -9,6 +9,7 @@
         <ion-label >{{ingredient.name}}</ion-label>
         <ion-icon name="close-circle" (click)="removeIngredient(ingredient.id)" ></ion-icon>
       </ion-chip>
+
     </ion-list>
 
     <ion-icon slot="end" name="add-circle-outline" (click)="openModalHandler()"></ion-icon>
@@ -24,15 +25,15 @@
 
   <ion-list id="pizzaList" class="ion-padding-top">
     <ion-item-sliding *ngFor="let pizza of showPizzas">
-      <ion-item detail>
+      <ion-item routerLink="pizza/{{pizza.id}}" routerDirection="forward" detail>
         <ion-thumbnail slot="start" class="ion-margin-end">
-          <ion-img src={{imageURL}}></ion-img>
+          <ion-img src={{pizza.image}}></ion-img>
         </ion-thumbnail>
         <ion-label class="ion-text-wrap"> <h2>{{pizza.name}}</h2> <h4>{{pizza.content}}</h4></ion-label>
         <ion-label slot="end">{{pizza.price}} €</ion-label>
       </ion-item>
       <ion-item-options side="end">
-        <ion-item-option (click)="addCart(item)">Add to Cart</ion-item-option>
+        <ion-item-option (click)="presentModal(pizza)">Ajouter au panier</ion-item-option>
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
@@ -43,7 +44,7 @@
             <ion-toolbar>
               <ion-title>Ingredient</ion-title>
               <ion-buttons slot="end">
-                <ion-button (click)="dismissModalHandler()">Close</ion-button>
+                <ion-button (click)="dismissModalHandler()">Fermer</ion-button>
               </ion-buttons>
             </ion-toolbar>
           </ion-header>

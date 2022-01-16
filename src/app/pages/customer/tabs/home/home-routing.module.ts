@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: HomePage
-  }
+  },
+  {
+    path: 'pizza/:id',
+    loadChildren: () => import('../../../pizzas/show-pizza/show-pizza.module').then(m => m.ShowPizzaPageModule)
+  },
 ];
 
 @NgModule({

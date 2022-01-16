@@ -34,7 +34,6 @@ export class SettingsComponent implements OnInit{
       }
     })
   
-    
     toggle.addEventListener('ionChange', (ev) => {
       if((<any>ev).detail.checked == true) {
         this.storage.set('dark-mode', true);
@@ -44,6 +43,8 @@ export class SettingsComponent implements OnInit{
       document.body.classList.toggle('dark', (<any>ev).detail.checked);
     });
   }
+
+
   async logout() {
     await this.authService.logout();
     this.router.navigateByUrl('/', { replaceUrl: true});

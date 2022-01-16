@@ -1,0 +1,38 @@
+<ion-content>
+  <ion-header translucent>
+    <ion-toolbar>
+      <ion-title>Panier</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="dismissModal()">Fermer</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content [fullscreen]="true">
+      <div class="modal-cart-pizza d-flex">
+        <div class="modal-cart-image">
+          <img src="{{data.image}}" alt="pizza image" width="70px"/>
+        </div>
+        <div class="modal-cart-action text-center">
+          <div class="title">
+            <h1>
+              {{data.name}}
+            </h1>
+          </div>
+          <div class="quantity jc-center">
+            <ion-icon name="remove-circle" (click)="decrementQty(quantity)"></ion-icon>
+            <input class="text-center" type="number" min="1" max="10" [value]="quantity"/>
+            <ion-icon name="add-circle" (click)="incrementQty(quantity)"></ion-icon>
+          </div>
+          <div>
+            <h2>{{data.price * quantity}}€</h2>
+          </div>
+        </div>
+      </div>
+      <div class="modal-cart-btn">
+
+      </div>
+      <ion-footer>
+        <ion-button expand="block" fill="outline" class="ion-margin" (click)="addToCart(data)">Continuer mes achats</ion-button>
+        <ion-button expand="block" class="ion-margin" (click)="addToCart(data, true)">Voir mon panier</ion-button>
+      </ion-footer>
+</ion-content>

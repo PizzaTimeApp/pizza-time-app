@@ -1,0 +1,12 @@
+ion-avatar {
+    width:25% !important;  
+    height : 100% !important;  
+    max-width: 100px !important; 
+    max-height: 100px !important; 
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
