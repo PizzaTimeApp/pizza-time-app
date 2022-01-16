@@ -103,4 +103,8 @@ export class CartPage {
       }
     );
   }
+
+  getImagePizza(image:any) {
+    return this.customerApiPizza.getImagePizza(image);
+  }
 }

@@ -8,3 +8,10 @@ export class Pizza {
     content: string;
     ingredients: Ingredient;
 }
+export class CreatePizza {
+    name: string;
+    price: string;
+    image: string;
+    content: string;
+    ingredients: any;
+}

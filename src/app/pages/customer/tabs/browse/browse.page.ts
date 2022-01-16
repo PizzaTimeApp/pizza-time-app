@@ -4,6 +4,7 @@ import { CustomerApiPizzaService } from 'src/api/pizza/customer/customer-api-piz
 import { ModalComponent } from '../../../../components/modal/modal.component';
 import { CartModalPage } from '../cart/cart-modal/cart-modal.page';
 import { Ingredient } from '../../../../models/ingredient';
+import { RefresherComponent } from 'src/app/components/refresher/refresher.component';
 @Component({
   selector: 'app-browse',
   templateUrl: 'browse.page.html',
@@ -17,11 +18,11 @@ export class BrowsePage {
   ingredients = [];
   ingredientsDislike = [];
 
-
   constructor(
     private customerApiPizza : CustomerApiPizzaService, 
     private customerApiIngredient : CustomerApiIngredientService,
     private modal: ModalComponent,
+    private refresher: RefresherComponent
     ) {}
 
   ngOnInit() {
@@ -107,4 +108,12 @@ export class BrowsePage {
     this.modal.presentModal(CartModalPage, "cart-modal", pizza);
   }
   
+  getImagePizza(image:any) {
+    return this.customerApiPizza.getImagePizza(image);
+  }
+
+  doRefresh(event) {
+    this.refresher.doRefresh(event, 2000);
+    this.ngOnInit();
+  }
 }

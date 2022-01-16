@@ -1,6 +1,9 @@
 <app-header></app-header>
 
 <ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-searchbar (ionChange)="searchChanged($event)" showCancelButton="always" placeholder="Rechercher" cancelButtonText="Annuler"></ion-searchbar>
   <ion-item>
 
@@ -9,7 +12,6 @@
         <ion-label >{{ingredient.name}}</ion-label>
         <ion-icon name="close-circle" (click)="removeIngredient(ingredient.id)" ></ion-icon>
       </ion-chip>
-
     </ion-list>
 
     <ion-icon slot="end" name="add-circle-outline" (click)="openModalHandler()"></ion-icon>
@@ -27,7 +29,7 @@
     <ion-item-sliding *ngFor="let pizza of showPizzas">
       <ion-item routerLink="pizza/{{pizza.id}}" routerDirection="forward" detail>
         <ion-thumbnail slot="start" class="ion-margin-end">
-          <ion-img src={{pizza.image}}></ion-img>
+          <ion-img src={{getImagePizza(pizza.image)}}></ion-img>
         </ion-thumbnail>
         <ion-label class="ion-text-wrap"> <h2>{{pizza.name}}</h2> <h4>{{pizza.content}}</h4></ion-label>
         <ion-label slot="end">{{pizza.price}} €</ion-label>

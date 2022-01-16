@@ -10,9 +10,9 @@
         <ion-list *ngIf="pizzas.length >= 1;else elseBlock">
           <ion-item *ngFor='let pizza of pizzas'>
             <ion-avatar slot="start">
-              <img class="img-items" src="{{pizza.image}}" alt="pizza image" />
+              <ion-img class="img-items" src={{getImagePizza(pizza.image)}} alt="pizza image" ></ion-img>
             </ion-avatar>
-            <ion-label class="cart-item">
+            <div class="cart-item">
               <div class="">
                 <h2>{{pizza.name}}</h2>
                 <h3>Quantité: {{pizza.quantity}}</h3>
@@ -21,7 +21,7 @@
               <div>
                 <ion-button fill="outline" slot="end" (click)="deleteItemCart(pizza.id)">Supprimer</ion-button>
               </div>
-            </ion-label>
+            </div>
           </ion-item>
           <div class="">
             <div class="right">

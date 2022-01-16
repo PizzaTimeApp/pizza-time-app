@@ -40,7 +40,11 @@ export class HomePage implements OnInit {
 
   getMomentPizzas(){
     this.customerApiPizza.getPizzas("admin", 10).subscribe(data => {
-      this.momentPizzas = data.body.pizzas;      
+      if( data.body.pizzas.length >= 1){
+        this.momentPizzas = data.body.pizzas; 
+      } else {
+        this.momentPizzas == null;
+      }
     })
   }
 

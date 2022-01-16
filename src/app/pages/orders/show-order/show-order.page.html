@@ -18,7 +18,7 @@
         <ion-list>
           <ion-item *ngFor='let orderReservation of myOrder.orderReservations'>
             <ion-avatar slot="start">
-              <img class="img-items" src="{{orderReservation.pizza.image}}" alt="pizza image" />
+              <ion-img src={{getImagePizza(orderReservation.pizza.image)}} class="img-items" alt="pizza image" ></ion-img>
             </ion-avatar>
             <ion-label class="">
               <div class="d-flex jc-between">

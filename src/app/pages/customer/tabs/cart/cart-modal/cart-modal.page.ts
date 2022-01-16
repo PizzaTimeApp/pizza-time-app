@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
+import { CustomerApiPizzaService } from 'src/api/pizza/customer/customer-api-pizza.service';
 import { CustomerApiOrderService } from '../../../../../../api/order/customer/customer-api-order.service';
 import { ModalComponent } from '../../../../../components/modal/modal.component';
 import { CustomerTabsPage } from '../../tabs/customer-tabs.page';
+import { ToastComponent } from '../../../../../components/alerts/toast/toast.component';
 
 @Component({
   selector: 'app-cart-modal',
@@ -19,9 +21,10 @@ export class CartModalPage implements OnInit {
   constructor(
     private storage: Storage,
     private router:Router, 
-    private customerApiOrder: CustomerApiOrderService,
     private modal: ModalComponent,
-    private customerTab: CustomerTabsPage
+    private customerTab: CustomerTabsPage,
+    private customerApiPizza: CustomerApiPizzaService,
+    private toast: ToastComponent
   ) { }
 
   ngOnInit() {    
@@ -52,9 +55,11 @@ export class CartModalPage implements OnInit {
     let localUserCart = null;
     let cartCounter = 0;
 
-    let currentUserCart = await this.storage.get('USER_CART');    
-    currentUserCart = JSON.parse(currentUserCart);
-    cartCounter = currentUserCart.length;
+    let currentUserCart = await this.storage.get('USER_CART');   
+    if(currentUserCart) {
+      currentUserCart = JSON.parse(currentUserCart);
+      cartCounter = currentUserCart.length;
+    } 
 
     if(currentUserCart || currentUserCart  != null || currentUserCart  != undefined){        
       let itemExist = currentUserCart.findIndex(item => item.idPizza === data.id);
@@ -77,6 +82,7 @@ export class CartModalPage implements OnInit {
     if(redirect == true) {
       this.redirectToCart();
     } else {
+      await this.toast.presentToast("Article ajouté au panier", 3000);
       this.dismissModal();
     }
   }
@@ -85,7 +91,11 @@ export class CartModalPage implements OnInit {
     this.dismissModal();
     this.router.navigateByUrl("app/user/cart").then(() => {
       window.location.reload();
-    });;
+    });
+  }
+
+  getImagePizza(image:any) {
+    return this.customerApiPizza.getImagePizza(image);
   }
 
 }

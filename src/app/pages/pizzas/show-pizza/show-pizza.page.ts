@@ -37,4 +37,8 @@ export class ShowPizzaPage implements OnInit {
     this.modal.presentModal(CartModalPage, "cart-modal", this.pizza);
   }
 
+  getImagePizza(image:any) {
+    return this.customerApiPizza.getImagePizza(image);
+  }
+
 }
