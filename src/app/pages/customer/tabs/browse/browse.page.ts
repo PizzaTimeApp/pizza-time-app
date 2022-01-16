@@ -76,6 +76,5 @@ export class BrowsePage {
   getImagePizza(image:any) {
     return this.customerApiPizza.getImagePizza(image);
   }
-
   
 }
