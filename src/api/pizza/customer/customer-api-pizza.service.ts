@@ -32,5 +32,8 @@ import { GetParamsService } from '../../get-params.service';
       
       return this.http.get(this.API_URL+this.pizzaUrl+'/getPizzas', {params: params});
     }
-  
+
+    getPizza(idPizza): Observable<any>{ 
+      return this.http.get(this.API_URL+this.pizzaUrl+'/getPizza/'+idPizza);
+    }  
 }

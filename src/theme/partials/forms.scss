@@ -20,15 +20,12 @@
     padding: 30px 0 10px 0;
 }
 
-// Positioning
-
-
-// Sizes 
-
-// FormGroup
-// .input-group {
-//     background: #fff;
-//     border-radius: 10px;
-//     overflow: hidden;
-//     margin-bottom: 15px;
-// }
+// Errors 
+.errors {
+    font-size: small;
+    color: #fff;
+    background:  var(--ion-color-danger);
+    padding-left: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}

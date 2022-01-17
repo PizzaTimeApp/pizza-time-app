@@ -30,5 +30,10 @@ import { GetParamsService } from '../../get-params.service';
     getMyOrder(idOrder): Observable<any>{ 
       return this.http.get(this.API_URL+this.orderUrl+'/getMyOrder/'+idOrder);
     }
+
+    postOrder(cartItem: Object): Observable<any>{
+      return this.http.post(this.API_URL+this.orderUrl+'/createOrder', cartItem);
+    } 
+
     
 }

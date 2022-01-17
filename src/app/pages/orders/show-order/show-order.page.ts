@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerApiOrderService } from '../../../../api/order/customer/customer-api-order.service';
 import { ActivatedRoute } from '@angular/router';
+import { CustomerApiPizzaService } from 'src/api/pizza/customer/customer-api-pizza.service';
 
 @Component({
   selector: 'app-show-order',
@@ -13,6 +14,7 @@ export class ShowOrderPage implements OnInit {
   
   constructor(
     private customerApiOrder: CustomerApiOrderService,
+    private customerApiPizza: CustomerApiPizzaService,
     private activatedRoute: ActivatedRoute
   ) { }
 
@@ -28,6 +30,10 @@ export class ShowOrderPage implements OnInit {
         console.log(this.myOrder);   
       });
     });
-    
   }
+
+  getImagePizza(image:any) {
+    return this.customerApiPizza.getImagePizza(image);
+  }
+
 }

@@ -20,8 +20,7 @@ export class HeaderComponent implements OnInit {
     this.router.navigateByUrl('/', { replaceUrl: true});
   }
 
-  openFirst() {
-    console.log("dfsf");
+  openMainContent() {
     this.menu.enable(true, 'main-content');
     this.menu.open('main-content');
   }

@@ -86,21 +86,18 @@ ion-content {
     padding: 10px;
 }
 
-
-// Errors 
-.errors {
-    font-size: small;
-    color: #fff;
-    background:  var(--ion-color-danger);
-    padding-left: 15px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
-
 // Title 
 h1.title {
     padding: 0 20px;
     font-size: 24px;
     margin-top: 0;
     font-weight: 600;
+}
+
+
+// Responsive
+@media (max-width: 380px) {
+    .jc-between{
+        flex-direction: column;
+    }
 }

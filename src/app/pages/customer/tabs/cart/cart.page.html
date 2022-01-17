@@ -1,9 +1,46 @@
 <app-header></app-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Cart</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-row class="ai-center h-100">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Panier</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list *ngIf="pizzas.length >= 1;else elseBlock">
+          <ion-item *ngFor='let pizza of pizzas'>
+            <ion-avatar slot="start">
+              <ion-img class="img-items" src={{getImagePizza(pizza.image)}} alt="pizza image" ></ion-img>
+            </ion-avatar>
+            <div class="cart-item">
+              <div class="">
+                <h2>{{pizza.name}}</h2>
+                <h3>Quantité: {{pizza.quantity}}</h3>
+                <h2>{{pizza.totalAmount}}€</h2>
+              </div> 
+              <div>
+                <ion-button fill="outline" slot="end" (click)="deleteItemCart(pizza.id)">Supprimer</ion-button>
+              </div>
+            </div>
+          </ion-item>
+          <div class="">
+            <div class="right">
+              <ion-row class="ion-padding">
+                <ion-text>TVA: 20%</ion-text>
+              </ion-row>
+              <ion-row class="ion-padding">
+                <ion-text>TTC: {{totalAmount}}€</ion-text>
+              </ion-row>
+            </div>
+          </div>
+        </ion-list>
+        <ng-template #elseBlock><h1>Votre panier est vide</h1></ng-template>
+      </ion-card-content>
+    </ion-card>
+  </ion-row>
 </ion-content>
+
+<ion-footer *ngIf="pizzas.length >= 1">
+  <ion-button expand="block" class="ion-margin" (click)="checkout()">Commander</ion-button>
+</ion-footer>
+

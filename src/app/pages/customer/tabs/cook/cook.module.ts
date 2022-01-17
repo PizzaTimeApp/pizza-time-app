@@ -2,7 +2,7 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CookPage } from './cook.page';
 
 import { CookPageRoutingModule } from './cook-routing.module';
@@ -14,7 +14,8 @@ import { ComponentsModule } from 'src/app/components/components.module';
     CommonModule,
     FormsModule,
     CookPageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    ReactiveFormsModule
   ],
   declarations: [CookPage]
 })

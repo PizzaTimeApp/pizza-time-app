@@ -1,9 +1,42 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>show-pizza</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Pizza</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content [fullscreen]="true">
+    <ion-row class="ai-center h-100">
+      <ion-card>
+        <div class="pizza-header">
+          <div>
+            <ion-img class="img-items" src={{getImagePizza(pizza.image)}} alt="pizza image" ></ion-img>
+          </div>
+          <div class="pizza-price">
+            <ion-text>
+              {{pizza.price}}€
+            </ion-text>
+          </div>
+        </div>
+        <ion-card-header>
+          <ion-item class="pizza-card-header ion-no-padding">
+            <ion-card-title>{{pizza.name}}</ion-card-title>
+            <ion-button fill="outline" slot="end" (click)="presentModal()">Ajouter</ion-button>
+          </ion-item>  
+        </ion-card-header>
+        <ion-card-content>
+          <div>
+            {{pizza.content}}
+          </div>
+          <div>
+            <br><ion-text>Ingrédients:</ion-text><br>
+            <div *ngFor="let ingredient of pizza.ingredient">
+              <ion-text>- {{ingredient.name}}</ion-text>
+            </div>
+          </div>
+        </ion-card-content>
+      </ion-card>    
+    </ion-row>
 </ion-content>

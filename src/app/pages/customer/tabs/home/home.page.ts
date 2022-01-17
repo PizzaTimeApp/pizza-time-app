@@ -10,7 +10,9 @@ import { RefresherComponent } from '../../../../components/refresher/refresher.c
 
 export class HomePage implements OnInit {
 
-  newPizza = null;
+  openModal = true;
+
+  newPizza = Object;
   momentPizzas = null;
   slideOpt ={
     direction: 'horizontal',
@@ -30,15 +32,19 @@ export class HomePage implements OnInit {
     this.getMomentPizzas();
   }
   
-  getNewPizza() {
+  async getNewPizza() {
     this.customerApiPizza.getPizzas("admin", 1).subscribe(data => {
-      this.newPizza = data.body.pizzas;
+      this.newPizza = data.body.pizzas[0];      
     })
   }
 
   getMomentPizzas(){
     this.customerApiPizza.getPizzas("admin", 10).subscribe(data => {
-      this.momentPizzas = data.body.pizzas;      
+      if( data.body.pizzas.length >= 1){
+        this.momentPizzas = data.body.pizzas; 
+      } else {
+        this.momentPizzas == null;
+      }
     })
   }
 

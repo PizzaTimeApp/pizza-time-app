@@ -3,27 +3,29 @@ import { CustomerApiIngredientService } from 'src/api/ingredient/customer/custom
 import { AlertComponent } from 'src/app/components/alerts/alert/alert.component';
 import { LoadingComponent } from 'src/app/components/alerts/loading/loading.component';
 import { CustomerApiPizzaService } from 'src/api/pizza/customer/customer-api-pizza.service';
-import { CreatePizza } from 'src/app/models/pizza';
+import { Pizza, CreatePizza } from 'src/app/models/pizza';
 import { Router } from '@angular/router';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-cook',
   templateUrl: 'cook.page.html',
   styleUrls: ['cook.page.scss']
 })
 export class CookPage {
-  ingredients = [];
-  photo= "../../../../../assets/camera.jpeg";
-  ingredientsSelected = [];
-  openModal = false;
-  PizzaCreate:CreatePizza = {
-    name: '',
-    price: '',
-    image: '',
-    content: '',
-    ingredients: []
-  };
 
+  ingredients = [];
+  ingredientsSelected = [];
+  photo= "../../../../../assets/camera.jpeg";
+  openModal = false;
+  pizzaCreated: FormGroup;
+  // PizzaCreate:CreatePizza = {
+  //   name: '',
+  //   price: '',
+  //   image: '',
+  //   content: '',
+  //   ingredients: [],
+  // };
 
   constructor(
     private customerApiIngredient : CustomerApiIngredientService, 
@@ -31,9 +33,44 @@ export class CookPage {
     private alert: AlertComponent,
     private loading: LoadingComponent,
     private router:Router,
-    ) {}
+    private fb: FormBuilder,
+  ) {}
 
-    
+  ngOnInit(){
+    this.customerApiIngredient.getIngredients().subscribe((data)=>{
+      this.ingredients = data.body.ingredients.map(ingredient=> {
+        let ingredientCheck = ingredient;
+        ingredientCheck.isChecked = false;
+        return ingredientCheck;
+      });
+    })
+
+    this.pizzaCreated = this.fb.group({
+      name: ['', Validators.required],
+      price: ['', Validators.required],
+      image: ['', Validators.required],
+      content: ['', Validators.required],
+      ingredients: [[], Validators.required]
+    })
+  }
+
+  get name() {
+    return this.pizzaCreated.get('name');
+  }
+  get price() {
+    return this.pizzaCreated.get('price');
+  }
+  get image() {
+    return this.pizzaCreated.get('image');
+  }
+  get content() {
+    return this.pizzaCreated.get('content');
+  }
+  get pizzaIngredients() {
+    return this.pizzaCreated.get('ingredients');
+  }
+  get f() { return this.pizzaCreated.controls; }
+
   async takePicture(){
     const image = await Camera.getPhoto({
       quality: 100,
@@ -43,19 +80,8 @@ export class CookPage {
       source: CameraSource.Prompt
     });
     console.log(image.dataUrl);
-    this.photo = image.dataUrl;
-    this.PizzaCreate.image = image.dataUrl;
-  }
     
-  ngOnInit(){
-
-    this.customerApiIngredient.getIngredients().subscribe((data)=>{
-      this.ingredients = data.body.ingredients.map(ingredient=> {
-        let ingredientCheck = ingredient;
-        ingredientCheck.isChecked = false;
-        return ingredientCheck;
-      });
-    });
+    this.photo = image.dataUrl;  
   }
 
   openModalHandler(){
@@ -70,7 +96,7 @@ export class CookPage {
     this.ingredientsSelected.forEach(ingr => {
       ingredients.push(ingr.id);
     });
-    this.PizzaCreate.ingredients = ingredients
+    this.ingredients = ingredients
   }
 
   removeIngredient(idIngredient){
@@ -82,27 +108,21 @@ export class CookPage {
       return ingredient
     });
     
-    this.PizzaCreate.ingredients = this.PizzaCreate.ingredients.filter(ingredient=> ingredient != idIngredient);
+    this.f.ingredients = <any> this.f.pizzaIngredients.value.filter(ingredient=> ingredient != idIngredient);
     console.log("Ingredient remove : " + idIngredient);
-  }
-
-  changedTitle(e:any){
-    this.PizzaCreate.name = e.detail.value;
-    
-  }
-  changedDescription(e:any){
-    this.PizzaCreate.content = e.detail.value;
-
-  }
-  changedPrice(e:any){
-    this.PizzaCreate.price = e.detail.value;
-    
   }
 
   async createPizza(){
     const loading = await this.loading.createLoading();
+    
+    this.f.image.setValue(this.photo);
+    this.f.ingredients.setValue(this.ingredients);
 
-    this.customerApiPizzaService.createPizza(this.PizzaCreate).subscribe(
+    this.pizzaCreated.patchValue(this.f.value);
+   
+    console.log(this.pizzaCreated.value);
+    
+    this.customerApiPizzaService.createPizza(this.pizzaCreated.value).subscribe(
       async (res) => {
         console.log(res);
         await loading.onDidDismiss();
@@ -112,7 +132,7 @@ export class CookPage {
       async (err) => {
         console.log(err);
         await loading.onDidDismiss();
-        this.alert.presentAlert('Un problème est survenu', "Si l'erreur perciste contactez le support", ['Réessayer']);
+        this.alert.presentAlert('Un problème est survenu', "Si l'erreur persiste contacter le support", ['Réessayer']);
       }
     );
     
