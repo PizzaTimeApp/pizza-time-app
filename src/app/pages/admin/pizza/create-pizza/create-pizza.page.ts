@@ -1,18 +1,19 @@
-import { Component } from '@angular/core';
-import { CustomerApiIngredientService } from 'src/api/ingredient/customer/customer-api-ingredient.service';
-import { AlertComponent } from 'src/app/components/alerts/alert/alert.component';
-import { LoadingComponent } from 'src/app/components/alerts/loading/loading.component';
-import { CustomerApiPizzaService } from 'src/api/pizza/customer/customer-api-pizza.service';
-import { Pizza, CreatePizza } from 'src/app/models/pizza';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CustomerApiIngredientService } from 'src/api/ingredient/customer/customer-api-ingredient.service';
+import { CustomerApiPizzaService } from 'src/api/pizza/customer/customer-api-pizza.service';
+import { AlertComponent } from 'src/app/components/alerts/alert/alert.component';
+import { LoadingComponent } from 'src/app/components/alerts/loading/loading.component';
+import { ToastComponent } from '../../../../components/alerts/toast/toast.component';
+
 @Component({
-  selector: 'app-cook',
-  templateUrl: 'cook.page.html',
-  styleUrls: ['cook.page.scss']
+  selector: 'app-create-pizza',
+  templateUrl: './create-pizza.page.html',
+  styleUrls: ['./create-pizza.page.scss'],
 })
-export class CookPage {
+export class CreatePizzaPage implements OnInit {
 
   ingredients = [];
   ingredientsSelected = [];
@@ -27,6 +28,7 @@ export class CookPage {
     private loading: LoadingComponent,
     private router:Router,
     private fb: FormBuilder,
+    private toast: ToastComponent
   ) {}
 
   ngOnInit(){
@@ -99,7 +101,7 @@ export class CookPage {
       return ingredient
     });
     
-    this.f.ingredients = <any> this.f.ingredients.value.filter(ingredient=> ingredient != idIngredient);
+    this.f.ingredients = <any> this.f.pizzaIngredients.value.filter(ingredient=> ingredient != idIngredient);
     console.log("Ingredient remove : " + idIngredient);
   }
 
@@ -108,14 +110,15 @@ export class CookPage {
     
     this.f.image.setValue(this.photo);
     this.f.ingredients.setValue(this.ingredients);
+
     this.pizzaCreated.patchValue(this.f.value);
-   
+       
     this.customerApiPizzaService.createPizza(this.pizzaCreated.value).subscribe(
       async (res) => {
         // console.log(res);
         await loading.onDidDismiss();
-        await this.alert.presentAlert('Votre pizza a été créée !',"bonne appétit", ['Merci !']);
-        this.router.navigateByUrl('/app/user/home', { replaceUrl: true});
+        this.toast.presentToast('Pizza ajoutée avec succès !', 3000);
+        this.router.navigateByUrl('/app/admin/pizza', { replaceUrl: true});
       },
       async (err) => {
         // console.log(err);
@@ -127,3 +130,4 @@ export class CookPage {
   }
 
 }
+

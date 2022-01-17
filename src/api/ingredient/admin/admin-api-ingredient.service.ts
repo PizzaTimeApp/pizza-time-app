@@ -3,12 +3,13 @@ import { HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { GetParamsService } from '../../get-params.service';
+import { Ingredient } from '../../../app/models/ingredient'
 
 
 @Injectable({
     providedIn: 'root'
   })
-  export class CustomerApiIngredientService {
+  export class AdminApiIngredientService {
 
     private API_URL= environment.API_URL;
     private ingredientUrl = 'api/ingredient'; 
@@ -18,11 +19,8 @@ import { GetParamsService } from '../../get-params.service';
       private httpParams: GetParamsService,
     ) { }
 
-
-    getIngredients(limit = null, offset = null, order = null): Observable<any>{ 
-      let params = this.httpParams.httpParamsFactory({"offset": offset, "order": order, "limit": limit});
-      
-      return this.http.get(this.API_URL+this.ingredientUrl+'/getIngredients', {params: params});
+    createIngredient(ingredient: Ingredient): Observable<any>{        
+      return this.http.post(this.API_URL+this.ingredientUrl+'/createIngredient', ingredient);
     }
   
 }

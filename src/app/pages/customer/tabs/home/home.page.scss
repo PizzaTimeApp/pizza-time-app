@@ -3,23 +3,23 @@
 }
 
 .arrows { 
-    top: 43%;
-    width: 15px;
-    height: 15px;
-    color: lightgray;
-    position: absolute;
-  }
-  
-  .prev {
-    border-bottom: 2px solid;
-    border-left: 2px solid;
-    transform: rotate(45deg);
-    left: 15px;
-  }
-  
-  .next {
-    border-bottom: 2px solid;
-    border-left: 2px solid;
-    transform: rotate(-135deg);
-    right: 15px;
-  }
+  top: 43%;
+  width: 15px;
+  height: 15px;
+  color: lightgray;
+  position: absolute;
+}
+
+.prev {
+  border-bottom: 2px solid;
+  border-left: 2px solid;
+  transform: rotate(45deg);
+  left: 15px;
+}
+
+.next {
+  border-bottom: 2px solid;
+  border-left: 2px solid;
+  transform: rotate(-135deg);
+  right: 15px;
+}

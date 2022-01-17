@@ -37,7 +37,7 @@ export class BrowsePage {
         return ingredientCheck;
       });
     });  
-    
+
   }
 
   searchChanged(ev:any) {

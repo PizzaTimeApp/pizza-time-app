@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 import { AuthenticationService } from '../../../services/authentication.service';
 import { AuthUserService } from 'src/api/auth/auth-user.service';
@@ -18,13 +19,15 @@ export class LoginPage implements OnInit {
 
   credentials: FormGroup;
 
+  decodeJwt = new JwtHelperService();
+
   constructor(
     private fb: FormBuilder,
     private authService: AuthenticationService,
     private router: Router,
     private alert: AlertComponent,
     private loading: LoadingComponent,
-    private authApi: AuthUserService
+    private authApi: AuthUserService,
   ) { }
 
   ngOnInit() {
@@ -52,7 +55,13 @@ export class LoginPage implements OnInit {
         } else {
           this.loading.dismissLoading(loading);
           this.authService.login(res.body.token);
-          this.router.navigateByUrl('/app', { replaceUrl: true});
+          // this.authApi.checkToken().subscribe(data => {
+          let decodeToken = this.decodeJwt.decodeToken(res.body.token);
+          if(decodeToken.isAdmin == "user") {
+            this.router.navigateByUrl('/app/user', { replaceUrl: true});
+          } else {
+            this.router.navigateByUrl('/app/admin', { replaceUrl: true});
+          }
         }
       },
       async (err) => {

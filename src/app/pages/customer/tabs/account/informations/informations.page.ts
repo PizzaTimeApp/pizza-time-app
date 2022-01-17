@@ -82,6 +82,7 @@ export class InformationsPage implements OnInit {
       async (res) => {
         // console.log(res);
         await loading.onDidDismiss();
+        this.router.navigateByUrl('/app/user/account');
         this.toast.presentToast("Modification de votre profile avec succès", 3000);
       },
       async (err) => {

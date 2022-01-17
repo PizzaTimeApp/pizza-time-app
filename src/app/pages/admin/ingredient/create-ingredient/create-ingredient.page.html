@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Ingrédient</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="form-content"> 
+  <ion-grid class="h-100">
+    <ion-row class="ai-center">
+      <form class="form-ai-center w-100" (ngSubmit)="createIngredient()" [formGroup]="ingredient">
+        <h1 class="title ion-text-center">Ajouter un ingredient ici!</h1>
+        <ion-card>
+          <ion-card-content>
+            <ion-input type="text" placeholder="Nom de la l'ingrédient" formControlName="name" required></ion-input>
+            <div *ngIf="(name.dirty || name.touched) && name.errors" class="errors">
+              <span *ngIf="name.errors?.required">Nom requis</span>
+            </div>
+          </ion-card-content>
+        
+          <ion-button expand="block" class="ion-padding-horizontal" type="submit">Ajouter l'ingrédient</ion-button>
+        </ion-card>
+      </form>
+      </ion-row>
+    </ion-grid>
+</ion-content>

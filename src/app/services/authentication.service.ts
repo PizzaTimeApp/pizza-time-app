@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { AlertController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { BehaviorSubject } from 'rxjs';
@@ -14,7 +15,9 @@ const AUTH_TOKEN = '';
 })
 export class AuthenticationService {
   isAuthenticated: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(null);
+  isAdmin: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(null);
   token = '';
+  decodeJwt = new JwtHelperService();
 
   constructor(
     private storage: Storage,
@@ -34,12 +37,15 @@ export class AuthenticationService {
 
   async checkToken() {
     const token = await this.storage.get('AUTH_TOKEN');   
+    let decodeToken = this.decodeJwt.decodeToken(token);
 
     if(token || token != null || token != undefined){
       await this.authApi.checkToken().subscribe(
         async (res) => { 
-          // console.log(res);
-          this.isAuthenticated.next(true);  
+          this.isAuthenticated.next(true); 
+          if(decodeToken.isAdmin == "admin") {
+            this.isAdmin.next(true);
+          }
         },
         async (err) => {
           // console.log(err);
@@ -49,7 +55,6 @@ export class AuthenticationService {
         } 
       )
     }
-
   }
 
   async loadToken() {
@@ -64,9 +69,15 @@ export class AuthenticationService {
   }
 
   login(token){     
+    let decodeToken = this.decodeJwt.decodeToken(token);
     if(token) {
       this.storage.set('AUTH_TOKEN', token);
       this.isAuthenticated.next(true);
+      if(decodeToken.isAdmin == "admin") {
+        this.isAdmin.next(true);
+      } else {
+        this.isAdmin.next(false);
+      }
     } else {
       this.isAuthenticated.next(false);
     }
