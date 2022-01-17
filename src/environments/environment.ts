@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  API_URL: "http://localhost:8101/"
+  API_URL: "http://pizzaapp-api.ml/"
 };
 
 /*
